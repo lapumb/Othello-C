@@ -28,12 +28,24 @@ void displayBoard(char board[][SIZE])
 // Initializes the board with start configuration of discs (see project specs)
 void initializeBoard(char board[][SIZE])
 {
-    // COMPLETE THIS FUNCTION
+    //initializing all empty discs (8x8)
+    for(int i = 0; i < SIZE; i++) {
+        for(int j = 0; j < SIZE; j++) {
+            board[i][j] = EMPTY; 
+        }
+    }
+
+    //initial placement of BLACK and WHITE discs
+    board[3][3] = BLACK; 
+    board[4][4] = BLACK; 
+    board[3][4] = WHITE; 
+    board[4][3] = WHITE; 
 }
 
 // Returns true if moving the disc to location row,col is valid; else returns false
 bool isValidMove(char board[][SIZE], int row, int col, char disc)
 {
+    
     return true;	// REPLACE THIS WITH YOUR IMPLEMENTATION
 }
 
