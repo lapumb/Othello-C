@@ -36,23 +36,45 @@ void initializeBoard(char board[][SIZE])
     }
 
     //initial placement of BLACK and WHITE discs
-    board[3][3] = BLACK; 
-    board[4][4] = BLACK; 
-    board[3][4] = WHITE; 
-    board[4][3] = WHITE; 
+    board[3][3] = BLACK; //(B at 4, 4)
+    board[4][4] = BLACK; //(B at 5, 5)
+    board[3][4] = WHITE; //(W at 4, 5)
+    board[4][3] = WHITE; //(W at 5, 4)
 }
 
 // Returns true if moving the disc to location row,col is valid; else returns false
 bool isValidMove(char board[][SIZE], int row, int col, char disc)
 {
-    
-    return true;	// REPLACE THIS WITH YOUR IMPLEMENTATION
+    int rowIndex = row - 1; 
+    int colIndex = col - 1; 
+
+    if(board[rowIndex][colIndex] == EMPTY) {
+        //checking to see if one or more of surrounding 
+        for(int i = rowIndex-1; i <= rowIndex+1; i++) { //checking 
+            for(int j = colIndex-1; j <= colIndex+1; j++) {
+                if(board[i][j] != EMPTY && board[i][j] != disc) {
+                    
+                }
+            }
+        }
+    }
+
+    else {
+        return false;
+    }
+
 }
 
 // Places the disc at location row,col and flips the opponent discs as needed
 void placeDiscAt(char board[][SIZE], int row, int col, char disc)
 {
-    // COMPLETE THIS FUNCTION
+    //placing disc
+    if(isValidMove()) {
+        board[row-1][col-1] = disc; //placing disc at real location (index -1)
+    }
+
+    //flipping other discs
+    
 }
 
 // Returns true if a valid move for disc is available; else returns false
