@@ -71,7 +71,13 @@ bool isValidMoveAvailable(char board[][SIZE], char disc)
 // Returns true if the board is fully occupied with discs; else returns false
 bool isBoardFull(char board[][SIZE])
 {
-    return false;	// REPLACE THIS WITH YOUR IMPLEMENTATION
+     for(int i = 0; i < SIZE; i++)
+          for(int j = 0; j< SIZE; j++)
+                //Need logic for this 
+               if(){
+                    return false ;
+               }
+     return true;	
 }
 
 // Returns true if either the board is full or a valid move is not available for either disc
