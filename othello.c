@@ -28,7 +28,6 @@ void displayBoard(char board[][SIZE])
 // Initializes the board with start configuration of discs (see project specs)
 void initializeBoard(char board[][SIZE])
 {
-<<<<<<< HEAD
     //initializing all empty discs (8x8)
     for(int i = 0; i < SIZE; i++) {
         for(int j = 0; j < SIZE; j++) {
@@ -41,28 +40,6 @@ void initializeBoard(char board[][SIZE])
     board[4][4] = BLACK; //(B at 5, 5)
     board[3][4] = WHITE; //(W at 4, 5)
     board[4][3] = WHITE; //(W at 5, 4)
-=======
-    struct Board *new;
-
-    //Sets up the board
-    for(int i = 0; i < SIZE; i++){
-        for (int j = 0; j < SIZE; j++){
-            new->othello[i][j]=' ';
-        }
-    }
-    
-    //place a piece at [3][3],[3][4],[4][3],[4][4]
-    new->othello[3][3] = '1';
-    new->othello[4][4] = '1';
-    new->othello[3][4] = '0';
-    new->othello[4][3] = '0';
-
-
-    return(new);
-
-
-    // COMPLETE THIS FUNCTION
->>>>>>> fe5860a38fdba0f468b3aa4d6e9c85b9ef78c855
 }
 
 // Returns true if moving the disc to location row,col is valid; else returns false
