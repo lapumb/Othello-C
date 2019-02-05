@@ -28,6 +28,25 @@ void displayBoard(char board[][SIZE])
 // Initializes the board with start configuration of discs (see project specs)
 void initializeBoard(char board[][SIZE])
 {
+    struct Board *new;
+
+    //Sets up the board
+    for(int i = 0; i < SIZE; i++){
+        for (int j = 0; j < SIZE; j++){
+            new->othello[i][j]=' ';
+        }
+    }
+    
+    //place a piece at [3][3],[3][4],[4][3],[4][4]
+    new->othello[3][3] = '1';
+    new->othello[4][4] = '1';
+    new->othello[3][4] = '0';
+    new->othello[4][3] = '0';
+
+
+    return(new);
+
+
     // COMPLETE THIS FUNCTION
 }
 
