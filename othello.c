@@ -88,7 +88,7 @@ bool isBoardFull(char board[][SIZE])
 {
     for(int i = 0; i < SIZE; i++){
         for(int j = 0; j< SIZE; j++){
-            //Need logic for this 
+            //TODO IF STATMENT 
             if(){
                 return false ;
             }
@@ -112,6 +112,8 @@ bool isGameOver(char board[][SIZE])
 // In case of a tie, it returns EMPTY
 char checkWinner(char board[][SIZE])
 {
+
+    /***********NOT SURE IF THE IF'S ARE CORRECT************/
     int countWhite;
     int countBlack;
 
@@ -119,9 +121,10 @@ char checkWinner(char board[][SIZE])
         for(int j = 0; j < SIZE; j++){
             if(board[i][j] == WHITE){
                 countWhite +=1; 
-            } else {
+            } else if(board[i][j] == BLACK) {
                 countBlack +=1;
             }
+            continue; 
         }
     }
 
