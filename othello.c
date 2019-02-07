@@ -1,7 +1,9 @@
 //***************************************************
 // Filename: othello.c
 //
-// Author: Nandigam and Blake Lapum
+// Author:  Nandigam
+//          Blake Lapum 
+//          Cole Sellers
 //***************************************************
 
 #include "othello.h"
@@ -35,11 +37,13 @@ void initializeBoard(char board[][SIZE])
         }
     }
 
+    printf("%d\n", SIZE/2);
+
     //initial placement of BLACK and WHITE discs
-    board[3][3] = BLACK; //(B at 4, 4)
-    board[4][4] = BLACK; //(B at 5, 5)
-    board[3][4] = WHITE; //(W at 4, 5)
-    board[4][3] = WHITE; //(W at 5, 4)
+    board[SIZE/2][SIZE/2] = BLACK; //(B at 4, 4)
+    board[SIZE/2 + 1][SIZE/2 + 1] = BLACK; //(B at 5, 5)
+    board[SIZE/2][SIZE/2 + 1] = WHITE; //(W at 4, 5)
+    board[SIZE/2 + 1][SIZE/2] = WHITE; //(W at 5, 4)
 }
 
 // Returns true if moving the disc to location row,col is valid; else returns false
@@ -88,13 +92,11 @@ bool isBoardFull(char board[][SIZE])
 {
     for(int i = 0; i < SIZE; i++){
         for(int j = 0; j< SIZE; j++){
-            //TODO IF STATMENT 
-            if(){
+            if(board[i][j] == EMPTY){
                 return false ;
             }
         }
     }
-
     return true;	
 }
 
