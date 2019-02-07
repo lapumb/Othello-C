@@ -104,7 +104,6 @@ bool isValidMoveAvailable(char board[][SIZE], char disc)
 // Returns true if the board is fully occupied with discs; else returns false
 bool isBoardFull(char board[][SIZE])
 {
-
     for(int i = 0; i < SIZE; i++){
         for(int j = 0; j< SIZE; j++){
             if (board[i][j] == EMPTY){
@@ -119,23 +118,18 @@ bool isBoardFull(char board[][SIZE])
 // Returns true if either the board is full OR a valid move is not available for either disc
 bool isGameOver(char board[][SIZE])
 {
-    if(isBoardFull(board)) { 
+    if(isBoardFull(board) || 
+                (!isValidMoveAvailable(board, WHITE) && !isValidMoveAvailable(board, BLACK))) { 
         return true; 
-    }
-    else if(!isValidMoveAvailable(board, WHITE) && !isValidMoveAvailable(board, BLACK)) {
-        return true; 
-    }
-    else {
-        return false; 
-    }
+    } 
+
+    return false; 
 }
 
 // If there is a winner, it returns the disc (BLACK or WHITE) associated with the winner.
 // In case of a tie, it returns EMPTY
 char checkWinner(char board[][SIZE])
 {
-
-    /***********NOT SURE IF THE IF'S ARE CORRECT************/
     int countWhite;
     int countBlack;
 
