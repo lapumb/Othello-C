@@ -1,7 +1,9 @@
 //***************************************************
 // Filename: othello.c
 //
-// Author: Nandigam and Blake Lapum
+// Author:  Nandigam
+//          Blake Lapum 
+//          Cole Sellers
 //***************************************************
 
 #include "othello.h"
@@ -35,11 +37,13 @@ void initializeBoard(char board[][SIZE])
         }
     }
 
+    printf("%d\n", SIZE/2);
+
     //initial placement of BLACK and WHITE discs
-    board[3][3] = BLACK; //(B at 4, 4)
-    board[4][4] = BLACK; //(B at 5, 5)
-    board[3][4] = WHITE; //(W at 4, 5)
-    board[4][3] = WHITE; //(W at 5, 4)
+    board[SIZE/2][SIZE/2] = BLACK; //(B at 4, 4)
+    board[SIZE/2 + 1][SIZE/2 + 1] = BLACK; //(B at 5, 5)
+    board[SIZE/2][SIZE/2 + 1] = WHITE; //(W at 4, 5)
+    board[SIZE/2 + 1][SIZE/2] = WHITE; //(W at 5, 4)
 }
 
 // Returns true if moving the disc to location row,col is valid; else returns false
@@ -100,6 +104,7 @@ bool isValidMoveAvailable(char board[][SIZE], char disc)
 // Returns true if the board is fully occupied with discs; else returns false
 bool isBoardFull(char board[][SIZE])
 {
+
     int count; 
     bool boardFull; 
     int boardSize = SIZE * SIZE; 
@@ -124,7 +129,7 @@ bool isBoardFull(char board[][SIZE])
      return boardFull;	
 }
 
-// Returns true if either the board is full or a valid move is not available for either disc
+// Returns true if either the board is full OR a valid move is not available for either disc
 bool isGameOver(char board[][SIZE])
 {
     if(isBoardFull(board)) { 
@@ -142,5 +147,27 @@ bool isGameOver(char board[][SIZE])
 // In case of a tie, it returns EMPTY
 char checkWinner(char board[][SIZE])
 {
-    return EMPTY;	// REPLACE THIS WITH YOUR IMPLEMENTATION
+
+    /***********NOT SURE IF THE IF'S ARE CORRECT************/
+    int countWhite;
+    int countBlack;
+
+    for(int i = 0; i < SIZE; i++){
+        for(int j = 0; j < SIZE; j++){
+            if(board[i][j] == WHITE){
+                countWhite +=1; 
+            } else if(board[i][j] == BLACK) {
+                countBlack +=1;
+            }
+            continue; 
+        }
+    }
+
+    if (countWhite > countBlack){
+        return WHITE;
+    } else if(countBlack > countWhite){
+        return BLACK;
+    }
+    
+    return EMPTY;
 }
