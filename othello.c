@@ -67,14 +67,15 @@ bool isValidMove(char board[][SIZE], int row, int col, char disc)
         return false;
     }
 
+    return true; 
 }
 
 // Places the disc at location row,col and flips the opponent discs as needed
 void placeDiscAt(char board[][SIZE], int row, int col, char disc)
 {
     //placing disc
-    if(isValidMove()) {
-        board[row-1][col-1] = disc; //placing disc at real location (index -1)
+    if(isValidMove(board, row, col, disc)) {
+        board[row][col] = disc; //placing disc at real location (index -1)
     }
 
     //flipping other discs
@@ -84,30 +85,62 @@ void placeDiscAt(char board[][SIZE], int row, int col, char disc)
 // Returns true if a valid move for disc is available; else returns false
 bool isValidMoveAvailable(char board[][SIZE], char disc)
 {
-    return true;	// REPLACE THIS WITH YOUR IMPLEMENTATION
+    for(int i = 0; i < SIZE; i++) {
+        for(int j = 0; j < SIZE; j++) {
+            //giving index + 1 row/ col as if user was entering location
+            if(isValidMove(board, (i+1), (j+1), disc)) {
+                return true; 
+            }
+        }
+    }
+
+    if(isBoardFull(board)) {
+        return false; 
+    }
+
+    return true; 
 }
 
 // Returns true if the board is fully occupied with discs; else returns false
 bool isBoardFull(char board[][SIZE])
 {
-    for(int i = 0; i < SIZE; i++){
-        for(int j = 0; j< SIZE; j++){
-            if(board[i][j] == EMPTY){
-                return false ;
-            }
-        }
-    }
-    return true;	
+
+    int count; 
+    bool boardFull; 
+    int boardSize = SIZE * SIZE; 
+
+    //traversing through each space to see if it contains a disc
+     for(int i = 0; i < SIZE; i++) {
+          for(int j = 0; j< SIZE; j++) {
+                //Need logic for this 
+               if(board[i][j] == BLACK || board[i][j] == WHITE) {
+                    count += 1; 
+               }
+          }
+     }
+
+     if(count == boardSize) {
+         boardFull = true;  
+     }
+     else {
+         boardFull = false; 
+     }
+
+     return boardFull;	
 }
 
 // Returns true if either the board is full OR a valid move is not available for either disc
 bool isGameOver(char board[][SIZE])
 {
-    if(isBoardFull || !isValidMoveAvailable){
-        return true;
+    if(isBoardFull(board)) { 
+        return true; 
     }
-
-    return false;
+    else if(!isValidMoveAvailable(board, WHITE) && !isValidMoveAvailable(board, BLACK)) {
+        return true; 
+    }
+    else {
+        return false; 
+    }
 }
 
 // If there is a winner, it returns the disc (BLACK or WHITE) associated with the winner.
