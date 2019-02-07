@@ -105,28 +105,15 @@ bool isValidMoveAvailable(char board[][SIZE], char disc)
 bool isBoardFull(char board[][SIZE])
 {
 
-    int count; 
-    bool boardFull; 
-    int boardSize = SIZE * SIZE; 
+    for(int i = 0; i < SIZE; i++){
+        for(int j = 0; j< SIZE; j++){
+            if (board[i][j] == EMPTY){
+               return false; 
+            }
+        }
+    }
 
-    //traversing through each space to see if it contains a disc
-     for(int i = 0; i < SIZE; i++) {
-          for(int j = 0; j< SIZE; j++) {
-                //Need logic for this 
-               if(board[i][j] == BLACK || board[i][j] == WHITE) {
-                    count += 1; 
-               }
-          }
-     }
-
-     if(count == boardSize) {
-         boardFull = true;  
-     }
-     else {
-         boardFull = false; 
-     }
-
-     return boardFull;	
+    return true;
 }
 
 // Returns true if either the board is full OR a valid move is not available for either disc
