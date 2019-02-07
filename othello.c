@@ -80,25 +80,65 @@ void placeDiscAt(char board[][SIZE], int row, int col, char disc)
 // Returns true if a valid move for disc is available; else returns false
 bool isValidMoveAvailable(char board[][SIZE], char disc)
 {
-    return true;	// REPLACE THIS WITH YOUR IMPLEMENTATION
+    bool isTrue; 
+
+    if(isBoardFull()) {
+        isTrue = true; 
+    }
+    if else {
+        for(int i = 0; i < SIZE; i++) {
+            for(int j = 0; j < SIZE; j++) {
+                if(isValidMove(board[][SIZE], (i+1), (j+1))) {
+                    isTrue = false; 
+                }
+            }
+        }
+    }
+
+    else {
+        isTrue = false; 
+    }
+
+    return isTrue; 
 }
 
 // Returns true if the board is fully occupied with discs; else returns false
 bool isBoardFull(char board[][SIZE])
 {
-     for(int i = 0; i < SIZE; i++)
-          for(int j = 0; j< SIZE; j++)
+    int count; 
+    bool boardFull; 
+    int boardSize = SIZE * SIZE; 
+
+    //traversing through each space to see if it contains a disc
+     for(int i = 0; i < SIZE; i++) {
+          for(int j = 0; j< SIZE; j++) {
                 //Need logic for this 
-               if(){
-                    return false ;
+               if(board[i][j] == BLACK || board[i][j] == WHITE) {
+                    count += 1; 
                }
-     return true;	
+          }
+     }
+
+     if(count == boardSize) {
+         boardFull = true;  
+     }
+     else {
+         boardFull = false; 
+     }
+
+     return boardFull;	
 }
 
 // Returns true if either the board is full or a valid move is not available for either disc
 bool isGameOver(char board[][SIZE])
 {
-    return false;	// REPLACE THIS WITH YOUR IMPLEMENTATION
+    if(isBoardFull(board[][SIZE]) || isValidMoveAvailable(board[][SIZE]) == false) {
+        return true; 
+    }
+
+    else {
+        return false; 
+    }
 }
 
 // If there is a winner, it returns the disc (BLACK or WHITE) associated with the winner.
