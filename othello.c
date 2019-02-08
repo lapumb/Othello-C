@@ -37,49 +37,201 @@ void initializeBoard(char board[][SIZE])
         }
     }
 
-    printf("%d\n", SIZE/2);
+    //printf("%d\n", SIZE/2);
 
     //initial placement of BLACK and WHITE discs
-    board[SIZE/2][SIZE/2] = BLACK; //(B at 4, 4)
-    board[SIZE/2 + 1][SIZE/2 + 1] = BLACK; //(B at 5, 5)
-    board[SIZE/2][SIZE/2 + 1] = WHITE; //(W at 4, 5)
-    board[SIZE/2 + 1][SIZE/2] = WHITE; //(W at 5, 4)
+    board[SIZE/2][SIZE/2] = BLACK;
+    board[SIZE/2 - 1][SIZE/2 - 1] = BLACK;
+    board[SIZE/2][SIZE/2 - 1] = WHITE;
+    board[SIZE/2 - 1][SIZE/2] = WHITE;
 }
 
 // Returns true if moving the disc to location row,col is valid; else returns false
 bool isValidMove(char board[][SIZE], int row, int col, char disc)
 {
-    int rowIndex = row - 1; 
-    int colIndex = col - 1; 
+        //row and column
+    int i, j; 
 
-    if(board[rowIndex][colIndex] == EMPTY) {
-        //checking to see if one or more of surrounding 
-        for(int i = rowIndex-1; i <= rowIndex+1; i++) { //checking 
-            for(int j = colIndex-1; j <= colIndex+1; j++) {
-                if(board[i][j] != EMPTY && board[i][j] != disc) {
-                    
-                }
-            }
+    //moving up/left
+    i = row - 1;
+    j = col - 1;
+    while(board[i][j] != disc && board[i][j] != EMPTY) {
+        if(board[i-1][j-1] == disc) {
+            return true; 
+        }
+        else {
+            i--; 
+            j--; 
         }
     }
 
-    else {
-        return false;
+    //moving up
+    i = row - 1;
+    j = col;
+    while(board[i][j] != disc && board[i][j] != EMPTY) {
+        if(board[i-1][j] == disc) {
+            return true; 
+        }
+        else {
+            i--; 
+        }
     }
 
-    return true; 
+    //moving up/right
+    i = row - 1;
+    j = col + 1;
+    while(board[i][j] != disc && board[i][j] != EMPTY) {
+        if(board[i-1][j+1] == disc) {
+            return true; 
+        }
+        else {
+            i--; 
+            j++; 
+        }
+    }
+
+    //moving left
+    i = row;
+    j = col - 1;
+    while(board[i][j] != disc && board[i][j] != EMPTY) {
+        if(board[i][j-1] == disc) {
+            return true; 
+        }
+        else {
+            j--; 
+        }
+    }
+
+    //moving right
+    i = row;
+    j = col + 1;
+    while(board[i][j] != disc && board[i][j] != EMPTY) {
+        if(board[i][j+1] == disc) {
+            return true; 
+        }
+        else {
+            j++; 
+        }
+    }
+
+    //moving down/left
+    i = row + 1;
+    j = col - 1;
+    while(board[i][j] != disc && board[i][j] != EMPTY) {
+        if(board[i+1][j-1] == disc) {
+            return true; 
+        }
+        else {
+            i++; 
+            j--; 
+        }
+    }
+
+    //moving up/right
+    i = row + 1;
+    j = col + 1;
+    while(board[i][j] != disc && board[i][j] != EMPTY) {
+        if(board[i+1][j+1] == disc) {
+            return true; 
+        }
+        else {
+            i++; 
+            j++; 
+        }
+    }
+
+    //moving down
+    i = row + 1;
+    j = col;
+    while(board[i][j] != disc && board[i][j] != EMPTY) {
+        if(board[i+1][j] == disc) {
+            return true; 
+        }
+        else {
+            i++; 
+        }
+    }
+
+    return false;
 }
 
 // Places the disc at location row,col and flips the opponent discs as needed
 void placeDiscAt(char board[][SIZE], int row, int col, char disc)
 {
-    //placing disc
-    if(isValidMove(board, row, col, disc)) {
-        board[row][col] = disc; //placing disc at real location (index -1)
-    }
+    //row and column
+    int i, j; 
 
-    //flipping other discs
-    
+    if(isValidMove(board, row, col, disc)) {
+        //moving up/left
+        i = row - 1;
+        j = col - 1;
+        while(board[i][j] != disc && board[i][j] != EMPTY) {
+            board[i][j] = disc;
+            i--; 
+            j--; 
+        } 
+
+        //moving strait up
+        i = row - 1; 
+        j = col; 
+        while(board[i][j] != disc && board[i][j] != EMPTY) {
+            board[i][j] = disc;
+            i--; 
+        } 
+
+        // moving up/right
+        i = row - 1; 
+        j = col + 1; 
+        while(board[i][j] != disc && board[i][j] != EMPTY) {
+            board[i][j] = disc;
+            i--; 
+            j++; 
+        } 
+
+        //left
+        i = row; 
+        j = col - 1; 
+        while(board[i][j] != disc && board[i][j] != EMPTY) {
+            board[i][j] = disc;
+            j--; 
+        } 
+
+        //right 
+        i = row; 
+        j = col + 1; 
+        while(board[i][j] != disc && board[i][j] != EMPTY) {
+            board[i][j] = disc;
+            j++; 
+        } 
+
+        //down/left
+        i = row + 1; 
+        j = col - 1; 
+        while(board[i][j] != disc && board[i][j] != EMPTY) {
+            board[i][j] = disc;
+            i++;
+            j--; 
+        } 
+
+        //down
+        i = row + 1; 
+        j = col; 
+        while(board[i][j] != disc && board[i][j] != EMPTY) {
+            board[i][j] = disc;
+            i++; 
+        } 
+
+        //down/right
+        i = row + 1; 
+        j = col + 1; 
+        while(board[i][j] != disc && board[i][j] != EMPTY) {
+            board[i][j] = disc;
+            i++;  
+            j++; 
+        } 
+        
+        board[row][col] = disc; 
+    }
 }
 
 // Returns true if a valid move for disc is available; else returns false
