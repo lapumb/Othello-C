@@ -37,13 +37,13 @@ void initializeBoard(char board[][SIZE])
         }
     }
 
-    printf("%d\n", SIZE/2);
+    //printf("%d\n", SIZE/2);
 
     //initial placement of BLACK and WHITE discs
-    board[SIZE/2][SIZE/2] = BLACK; //(B at 4, 4)
-    board[SIZE/2 + 1][SIZE/2 + 1] = BLACK; //(B at 5, 5)
-    board[SIZE/2][SIZE/2 + 1] = WHITE; //(W at 4, 5)
-    board[SIZE/2 + 1][SIZE/2] = WHITE; //(W at 5, 4)
+    board[SIZE/2][SIZE/2] = BLACK;
+    board[SIZE/2 - 1][SIZE/2 - 1] = BLACK;
+    board[SIZE/2][SIZE/2 - 1] = WHITE;
+    board[SIZE/2 - 1][SIZE/2] = WHITE;
 }
 
 // Returns true if moving the disc to location row,col is valid; else returns false
