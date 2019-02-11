@@ -176,7 +176,6 @@ void placeDiscAt(char board[][SIZE], int row, int col, char disc)
 
             while(board[i][j] != EMPTY && board[i][j] != disc){
                 board[i][j] = disc;
-
             }
         }
 
@@ -193,6 +192,7 @@ void placeDiscAt(char board[][SIZE], int row, int col, char disc)
             
             while(board[i][j] != EMPTY && board[i][j] != disc){
                 board[i][j] = disc;
+                i++;
             }
         }
 
@@ -210,7 +210,7 @@ void placeDiscAt(char board[][SIZE], int row, int col, char disc)
                 
             while(board[i][j] != EMPTY && board[i][j] != disc){
                 board[i][j] = disc;
-
+                j--; 
             }
         }
 
@@ -227,11 +227,9 @@ void placeDiscAt(char board[][SIZE], int row, int col, char disc)
                 
             while(board[i][j] != EMPTY && board[i][j] != disc){
                 board[i][j] = disc;
-
+                j++;
             }
         }
-
-        /*---------Need to do  --------*/
 
         //moving up/left
         i = row - 1;
@@ -247,10 +245,11 @@ void placeDiscAt(char board[][SIZE], int row, int col, char disc)
                 
             while(board[i][j] != EMPTY && board[i][j] != disc){
                 board[i][j] = disc;
+                i--; 
+                j--; 
 
             }
         }
-
 
         // moving up/right
         i = row - 1; 
@@ -266,7 +265,8 @@ void placeDiscAt(char board[][SIZE], int row, int col, char disc)
                 
             while(board[i][j] != EMPTY && board[i][j] != disc){
                 board[i][j] = disc;
-
+                i--; 
+                j++;
             }
         }
 
@@ -283,6 +283,8 @@ void placeDiscAt(char board[][SIZE], int row, int col, char disc)
                 
             while(board[i][j] != EMPTY && board[i][j] != disc){
                 board[i][j] = disc;
+                i++;
+                j--;
 
             }
         }
@@ -301,7 +303,8 @@ void placeDiscAt(char board[][SIZE], int row, int col, char disc)
                 
             while(board[i][j] != EMPTY && board[i][j] != disc){
                 board[i][j] = disc;
-
+                i++;
+                j++;
             }
         }
         
