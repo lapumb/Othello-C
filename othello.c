@@ -59,9 +59,12 @@ bool isValidMove(char board[][SIZE], int row, int col, char disc)
         if(board[i-1][j-1] == disc) {
             return true; 
         }
-        else {
+        else if(i >= 1 && j >=1 ){
             i--; 
             j--; 
+            continue;
+        } else{
+            break;
         }
     }
 
@@ -72,8 +75,11 @@ bool isValidMove(char board[][SIZE], int row, int col, char disc)
         if(board[i-1][j] == disc) {
             return true; 
         }
-        else {
+        else if (i >= 1 ) {
             i--; 
+            continue;
+        } else{
+            break;
         }
     }
 
@@ -84,9 +90,12 @@ bool isValidMove(char board[][SIZE], int row, int col, char disc)
         if(board[i-1][j+1] == disc) {
             return true; 
         }
-        else {
+        else if(i >=1 && j <= 8){
             i--; 
             j++; 
+            continue;
+        } else{
+            break;
         }
     }
 
@@ -96,9 +105,12 @@ bool isValidMove(char board[][SIZE], int row, int col, char disc)
     while(board[i][j] != disc && board[i][j] != EMPTY) {
         if(board[i][j-1] == disc) {
             return true; 
+        } else if(j >= 1){
+            j--; 
+            continue;
+        } else{
+            break;
         }
-
-        j--; 
     }
 
     //moving right
@@ -108,8 +120,11 @@ bool isValidMove(char board[][SIZE], int row, int col, char disc)
         if(board[i][j+1] == disc) {
             return true; 
         }
-        else {
-            j++; 
+        else if(j <= 8){
+            j++;
+            continue; 
+        } else{
+            break;
         }
     }
 
@@ -120,9 +135,12 @@ bool isValidMove(char board[][SIZE], int row, int col, char disc)
         if(board[i+1][j-1] == disc) {
             return true; 
         }
-        else {
+        else if(i <= 8 && j >= 1){
             i++; 
             j--; 
+            continue;
+        } else{
+            break;
         }
     }
 
@@ -133,9 +151,12 @@ bool isValidMove(char board[][SIZE], int row, int col, char disc)
         if(board[i+1][j+1] == disc) {
             return true; 
         }
-        else {
+        else if (i <= 8 && j <= 8){
             i++; 
             j++; 
+            continue;
+        } else{
+            break;
         }
     }
 
@@ -146,8 +167,11 @@ bool isValidMove(char board[][SIZE], int row, int col, char disc)
         if(board[i+1][j] == disc) {
             return true; 
         }
-        else {
+        else if(i <= 8){
             i++; 
+            continue;
+        } else{
+            break;
         }
     }
 
