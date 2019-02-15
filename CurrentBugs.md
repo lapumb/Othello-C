@@ -1,5 +1,5 @@
 Bugs
-- Can override other players pieces 
+- N/A
 
 Untested
 - is game over 

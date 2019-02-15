@@ -1,7 +1,7 @@
 //***************************************************
 // Filename: othello.c
 //
-// Author:  Nandigam
+// Author:  Prof. Nandigam
 //          Blake Lapum 
 //          Cole Sellers
 //***************************************************
@@ -344,8 +344,7 @@ bool isValidMoveAvailable(char board[][SIZE], char disc)
 {
     for(int i = 0; i < SIZE; i++) {
         for(int j = 0; j < SIZE; j++) {
-            //giving index + 1 row/ col as if user was entering location
-            if(isValidMove(board, (i+1), (j+1), disc)) {
+            if(isValidMove(board, i, j, disc)) {
                 return true; 
             }
         }
@@ -400,6 +399,9 @@ char checkWinner(char board[][SIZE])
             continue; 
         }
     }
+
+    printf("White Score: %d\n", countWhite);
+    printf("Black Score: %d\n", countBlack);
 
     if (countWhite > countBlack){
         return WHITE;
