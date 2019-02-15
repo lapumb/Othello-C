@@ -1,7 +1,7 @@
-#Bugs
+Bugs
 - Can override other players pieces 
 
-#Untested
--is game over 
--is board full
--check winner
+Untested
+- is game over 
+- is board full
+- check winner
