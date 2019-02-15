@@ -36,7 +36,7 @@ void initializeBoard(char board[][SIZE])
             board[i][j] = EMPTY; 
         }
     }
-
+  
     //initial placement of BLACK and WHITE discs
     board[SIZE/2][SIZE/2] = BLACK;
     board[SIZE/2 - 1][SIZE/2 - 1] = BLACK;
@@ -47,12 +47,14 @@ void initializeBoard(char board[][SIZE])
 // Returns true if moving the disc to location row,col is valid; else returns false
 bool isValidMove(char board[][SIZE], int row, int col, char disc)
 {
+
     //row and column
     int i, j; 
 
     if(board[row][col] != EMPTY){
         return false;
     }
+
 
     //moving up/left
     i = row - 1;
@@ -61,6 +63,7 @@ bool isValidMove(char board[][SIZE], int row, int col, char disc)
         if(board[i-1][j-1] == disc) {
             return true; 
         }
+
         else if(i >= 1 && j >=1 ){
             i--; 
             j--; 
@@ -107,11 +110,13 @@ bool isValidMove(char board[][SIZE], int row, int col, char disc)
     while(board[i][j] != disc && board[i][j] != EMPTY) {
         if(board[i][j-1] == disc) {
             return true; 
+
         } else if(j >= 1){
             j--; 
             continue;
         } else{
             break;
+
         }
     }
 
@@ -122,11 +127,13 @@ bool isValidMove(char board[][SIZE], int row, int col, char disc)
         if(board[i][j+1] == disc) {
             return true; 
         }
+
         else if(j <= 8){
             j++;
             continue; 
         } else{
             break;
+
         }
     }
 
@@ -137,12 +144,14 @@ bool isValidMove(char board[][SIZE], int row, int col, char disc)
         if(board[i+1][j-1] == disc) {
             return true; 
         }
+
         else if(i <= 8 && j >= 1){
             i++; 
             j--; 
             continue;
         } else{
             break;
+
         }
     }
 
@@ -153,12 +162,14 @@ bool isValidMove(char board[][SIZE], int row, int col, char disc)
         if(board[i+1][j+1] == disc) {
             return true; 
         }
+
         else if (i <= 8 && j <= 8){
             i++; 
             j++; 
             continue;
         } else{
             break;
+
         }
     }
 
@@ -169,11 +180,13 @@ bool isValidMove(char board[][SIZE], int row, int col, char disc)
         if(board[i+1][j] == disc) {
             return true; 
         }
+
         else if(i <= 8){
             i++; 
             continue;
         } else{
             break;
+
         }
     }
 
@@ -222,10 +235,10 @@ void placeDiscAt(char board[][SIZE], int row, int col, char disc)
             }
         }
 
-
         //left
         i = row; 
         j = col - 1; 
+
         while(board[i][j] != disc && board[i][j] != EMPTY && (i <= 8 && i >= 0) && (j <= 8 && j >= 0)) {
             j--; 
         } 
@@ -318,6 +331,7 @@ void placeDiscAt(char board[][SIZE], int row, int col, char disc)
         //down/right
         i = row + 1; 
         j = col + 1; 
+
         while(board[i][j] != disc && board[i][j] != EMPTY && (i <= 8 && i >= 0) && (j <= 8 && j >= 0)) {
             i++;  
             j++; 
@@ -333,7 +347,6 @@ void placeDiscAt(char board[][SIZE], int row, int col, char disc)
                 j++;
             }
         }
-        
         board[row][col] = disc; 
     }
 }
