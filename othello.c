@@ -37,8 +37,6 @@ void initializeBoard(char board[][SIZE])
         }
     }
 
-    //printf("%d\n", SIZE/2);
-
     //initial placement of BLACK and WHITE discs
     board[SIZE/2][SIZE/2] = BLACK;
     board[SIZE/2 - 1][SIZE/2 - 1] = BLACK;
@@ -81,7 +79,6 @@ bool isValidMove(char board[][SIZE], int row, int col, char disc)
         }
         else if (i >= 1 ) {
             i--; 
-            printf("%d\n", i);
             continue;
         } else{
             break;
@@ -174,7 +171,6 @@ bool isValidMove(char board[][SIZE], int row, int col, char disc)
         }
         else if(i <= 8){
             i++; 
-            //printf("%d\n",i);
             continue;
         } else{
             break;
