@@ -52,6 +52,10 @@ bool isValidMove(char board[][SIZE], int row, int col, char disc)
     //row and column
     int i, j; 
 
+    if(board[row][col] != EMPTY){
+        return false;
+    }
+
     //moving up/left
     i = row - 1;
     j = col - 1;
