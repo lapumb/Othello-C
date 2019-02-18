@@ -90,23 +90,6 @@ bool isValidMove(char board[][SIZE], int row, int col, char disc)
         }
     }
 
-    //moving up/right
-    i = row - 1;
-    j = col + 1;
-    while(board[i][j] != disc && board[i][j] != EMPTY && i >= 1 && j <= SIZE ) {
-        if(board[i-1][j+1] == disc) {
-            printf("up/right\n");
-            return true; 
-        }
-        else if(i >= 1 && j <= SIZE){
-            i--; 
-            j++; 
-            continue;
-        } else{
-            break;
-        }
-    }
-
     //moving left
     i = row;
     j = col - 1;
@@ -146,7 +129,7 @@ bool isValidMove(char board[][SIZE], int row, int col, char disc)
     j = col - 1;
     while(board[i][j] != disc && board[i][j] != EMPTY && i <= SIZE  && j >= 1) {
         if(board[i+1][j-1] == disc) {
-            printf("down/left\n");
+            //printf("down/left\n");
             return true; 
         }
         else if(i <= SIZE && j >= 1){
@@ -159,12 +142,12 @@ bool isValidMove(char board[][SIZE], int row, int col, char disc)
         }
     }
 
-    //moving up/right
+    
     i = row + 1;
     j = col + 1;
     while(board[i][j] != disc && board[i][j] != EMPTY && i <= SIZE && j <= SIZE) {
         if(board[i+1][j+1] == disc) {
-            //printf("up/right\n");
+            //printf("Down/right\n");
             return true; 
         }
         else if (i <= SIZE && j <= SIZE){
@@ -174,6 +157,23 @@ bool isValidMove(char board[][SIZE], int row, int col, char disc)
         } else{
             break;
 
+        }
+    }
+
+    //moving up/right
+    i = row - 1;
+    j = col + 1;
+    while(board[i][j] != disc && board[i][j] != EMPTY && i >= 1 && j <= SIZE ) {
+        if(board[i-1][j+1] == disc) {
+            //printf("up/right\n");
+            return true; 
+        }
+        else if(i >= 1 && j <= SIZE){
+            i--; 
+            j++; 
+            continue;
+        } else{
+            break;
         }
     }
 
@@ -343,6 +343,7 @@ void placeDiscAt(char board[][SIZE], int row, int col, char disc)
         } 
 
         if(board[i][j] == disc){
+            //printf("here\n");
             i = row + 1; 
             j = col + 1; 
                 

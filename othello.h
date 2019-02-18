@@ -14,7 +14,7 @@
 #include <stdbool.h>
 #include <ctype.h>
 
-#define SIZE 4		// board size
+#define SIZE 8		// board size
 
 #define BLACK 'B'	// black disc
 
