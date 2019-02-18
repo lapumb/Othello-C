@@ -66,9 +66,7 @@ bool isValidMove(char board[][SIZE], int row, int col, char disc)
         else if (i >= 1 ) {
             i--; 
             continue;
-        } else{
-            break;
-        }
+        } 
     }
 
     //moving down
@@ -82,10 +80,7 @@ bool isValidMove(char board[][SIZE], int row, int col, char disc)
         else if(i <= SIZE){
             i++; 
             continue;
-        } else{
-            break;
-
-        }
+        } 
     }
 
     //moving left
@@ -99,10 +94,7 @@ bool isValidMove(char board[][SIZE], int row, int col, char disc)
         } else if(j >= 1){
             j--; 
             continue;
-        } else{
-            break;
-
-        }
+        } 
     }
 
     //moving right
@@ -116,9 +108,6 @@ bool isValidMove(char board[][SIZE], int row, int col, char disc)
         else if(j <= SIZE){
             j++;
             continue; 
-        } else{
-            break;
-
         }
     }
 
@@ -134,10 +123,7 @@ bool isValidMove(char board[][SIZE], int row, int col, char disc)
             i++; 
             j--; 
             continue;
-        } else{
-            break;
-
-        }
+        } 
     }
 
     //down/right
@@ -152,10 +138,7 @@ bool isValidMove(char board[][SIZE], int row, int col, char disc)
             i++; 
             j++; 
             continue;
-        } else{
-            break;
-
-        }
+        } 
     }
 
     //moving up/right
@@ -170,9 +153,7 @@ bool isValidMove(char board[][SIZE], int row, int col, char disc)
             i--; 
             j++; 
             continue;
-        } else{
-            break;
-        }
+        } 
     }
 
 
@@ -184,14 +165,11 @@ bool isValidMove(char board[][SIZE], int row, int col, char disc)
             //printf("up/left\n");
             return true; 
         }
-
         else if(i >= 1 && j >=1 ){
             i--; 
             j--; 
             continue;
-        } else{
-            break;
-        }
+        } 
     }
 
     return false;
