@@ -55,25 +55,6 @@ bool isValidMove(char board[][SIZE], int row, int col, char disc)
         return false;
     }
 
-
-    //moving up/left
-    i = row - 1;
-    j = col - 1;
-    while(board[i][j] != disc && board[i][j] != EMPTY && i >= 1 && j >= 1) {
-        if(board[i-1][j-1] == disc) {
-            //printf("up/left\n");
-            return true; 
-        }
-
-        else if(i >= 1 && j >=1 ){
-            i--; 
-            j--; 
-            continue;
-        } else{
-            break;
-        }
-    }
-
     //moving up
     i = row - 1;
     j = col;
@@ -87,6 +68,23 @@ bool isValidMove(char board[][SIZE], int row, int col, char disc)
             continue;
         } else{
             break;
+        }
+    }
+
+    //moving down
+    i = row + 1;
+    j = col;
+    while(board[i][j] != disc && board[i][j] != EMPTY && i <= SIZE) {
+        if(board[i+1][j] == disc) {
+            //printf("down\n");
+            return true; 
+        }
+        else if(i <= SIZE){
+            i++; 
+            continue;
+        } else{
+            break;
+
         }
     }
 
@@ -142,7 +140,7 @@ bool isValidMove(char board[][SIZE], int row, int col, char disc)
         }
     }
 
-    
+    //down/right
     i = row + 1;
     j = col + 1;
     while(board[i][j] != disc && board[i][j] != EMPTY && i <= SIZE && j <= SIZE) {
@@ -177,20 +175,22 @@ bool isValidMove(char board[][SIZE], int row, int col, char disc)
         }
     }
 
-    //moving down
-    i = row + 1;
-    j = col;
-    while(board[i][j] != disc && board[i][j] != EMPTY && i <= SIZE) {
-        if(board[i+1][j] == disc) {
-            //printf("down\n");
+
+    //moving up/left
+    i = row - 1;
+    j = col - 1;
+    while(board[i][j] != disc && board[i][j] != EMPTY && i >= 1 && j >= 1) {
+        if(board[i-1][j-1] == disc) {
+            //printf("up/left\n");
             return true; 
         }
-        else if(i <= SIZE){
-            i++; 
+
+        else if(i >= 1 && j >=1 ){
+            i--; 
+            j--; 
             continue;
         } else{
             break;
-
         }
     }
 
