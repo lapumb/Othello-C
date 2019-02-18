@@ -36,7 +36,7 @@ void initializeBoard(char board[][SIZE])
             board[i][j] = EMPTY; 
         }
     }
-
+  
     //initial placement of BLACK and WHITE discs
     board[SIZE/2][SIZE/2] = BLACK;
     board[SIZE/2 - 1][SIZE/2 - 1] = BLACK;
@@ -47,12 +47,14 @@ void initializeBoard(char board[][SIZE])
 // Returns true if moving the disc to location row,col is valid; else returns false
 bool isValidMove(char board[][SIZE], int row, int col, char disc)
 {
+
     //row and column
     int i, j; 
 
     if(board[row][col] != EMPTY){
         return false;
     }
+
 
     //moving up/left
     i = row - 1;
@@ -61,6 +63,7 @@ bool isValidMove(char board[][SIZE], int row, int col, char disc)
         if(board[i-1][j-1] == disc) {
             return true; 
         }
+
         else if(i >= 1 && j >=1 ){
             i--; 
             j--; 
@@ -107,11 +110,13 @@ bool isValidMove(char board[][SIZE], int row, int col, char disc)
     while(board[i][j] != disc && board[i][j] != EMPTY&& (i <= SIZE && i >= 0) && (j <= SIZE && j >= 0)) {
         if(board[i][j-1] == disc) {
             return true; 
+
         } else if(j >= 1){
             j--; 
             continue;
         } else{
             break;
+
         }
     }
 
@@ -127,6 +132,7 @@ bool isValidMove(char board[][SIZE], int row, int col, char disc)
             continue; 
         } else{
             break;
+
         }
     }
 
@@ -143,6 +149,7 @@ bool isValidMove(char board[][SIZE], int row, int col, char disc)
             continue;
         } else{
             break;
+
         }
     }
 
@@ -159,6 +166,7 @@ bool isValidMove(char board[][SIZE], int row, int col, char disc)
             continue;
         } else{
             break;
+
         }
     }
 
@@ -174,6 +182,7 @@ bool isValidMove(char board[][SIZE], int row, int col, char disc)
             continue;
         } else{
             break;
+
         }
     }
 
@@ -221,7 +230,6 @@ void placeDiscAt(char board[][SIZE], int row, int col, char disc)
                 i++;
             }
         }
-
 
         //left
         i = row; 
@@ -333,7 +341,6 @@ void placeDiscAt(char board[][SIZE], int row, int col, char disc)
                 j++;
             }
         }
-        
         board[row][col] = disc; 
     }
 }
