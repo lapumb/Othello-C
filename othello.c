@@ -48,7 +48,7 @@ void initializeBoard(char board[][SIZE])
 bool isValidMove(char board[][SIZE], int row, int col, char disc) {
     //row and column
     int r, c;  
-
+    if(board[row][col] == EMPTY) {
         // flips any opponent discs diagonal down left (southwest)
         r = row + 1;
         c = col - 1;
@@ -173,7 +173,7 @@ bool isValidMove(char board[][SIZE], int row, int col, char disc) {
                 }
             }
         }
-
+    }
     return false;
 }
 
