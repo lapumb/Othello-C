@@ -173,7 +173,7 @@ bool isValidMove(char board[][SIZE], int row, int col, char disc) {
                 }
             }
         }
-        
+
     return false;
 }
 
@@ -324,14 +324,16 @@ bool isBoardFull(char board[][SIZE])
 }
 
 // Returns true if either the board is full OR a valid move is not available for either disc
-bool isGameOver(char board[][SIZE])
-{
-    if(isBoardFull(board) || 
-                (!isValidMoveAvailable(board, WHITE) && !isValidMoveAvailable(board, BLACK))) { 
+bool isGameOver(char board[][SIZE]) {
+    if(isBoardFull(board)) {
         return true; 
     } 
-
-    return false; 
+    else if(!isValidMoveAvailable(board, WHITE) && !isValidMoveAvailable(board, BLACK)) {
+        return true; 
+    }
+    else {
+        return false; 
+    }
 }
 
 // If there is a winner, it returns the disc (BLACK or WHITE) associated with the winner.
