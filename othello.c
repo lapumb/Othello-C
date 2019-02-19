@@ -45,308 +45,251 @@ void initializeBoard(char board[][SIZE])
 }
 
 // Returns true if moving the disc to location row,col is valid; else returns false
-bool isValidMove(char board[][SIZE], int row, int col, char disc)
-{
-
+bool isValidMove(char board[][SIZE], int row, int col, char disc) {
     //row and column
-    int i, j; 
-
-    if(board[row][col] != EMPTY){
-        return false;
-    }
-
-
-    //moving up/left
-    i = row - 1;
-    j = col - 1;
-    while(board[i][j] != disc && board[i][j] != EMPTY) {
-        if(board[i-1][j-1] == disc) {
-            return true; 
+    int r, c;  
+    if(board[row][col] == EMPTY) {
+        // flips any opponent discs diagonal down left (southwest)
+        r = row + 1;
+        c = col - 1;
+        while (r < SIZE && c >= 0 && board[r][c] != EMPTY && board[r][c] != disc) {
+            r++;
+            c--;
         }
 
-        else if(i >= 1 && j >=1 ){
-            i--; 
-            j--; 
-            continue;
-        } else{
-            break;
-        }
-    }
-
-    //moving up
-    i = row - 1;
-    j = col;
-    while(board[i][j] != disc && board[i][j] != EMPTY) {
-        if(board[i-1][j] == disc) {
-            return true; 
-        }
-        else if (i >= 1 ) {
-            i--; 
-            continue;
-        } else{
-            break;
-        }
-    }
-
-    //moving up/right
-    i = row - 1;
-    j = col + 1;
-    while(board[i][j] != disc && board[i][j] != EMPTY) {
-        if(board[i-1][j+1] == disc) {
-            return true; 
-        }
-        else if(i >=1 && j <= 8){
-            i--; 
-            j++; 
-            continue;
-        } else{
-            break;
-        }
-    }
-
-    //moving left
-    i = row;
-    j = col - 1;
-    while(board[i][j] != disc && board[i][j] != EMPTY) {
-        if(board[i][j-1] == disc) {
-            return true; 
-
-        } else if(j >= 1){
-            j--; 
-            continue;
-        } else{
-            break;
-
-        }
-    }
-
-    //moving right
-    i = row;
-    j = col + 1;
-    while(board[i][j] != disc && board[i][j] != EMPTY) {
-        if(board[i][j+1] == disc) {
-            return true; 
+        if (r < SIZE && c >= 0 && board[r][c] == disc) {
+            for (int i = row + 1, j = col - 1; i < r && j > c; i++, j--) {
+                if(board[i+1][j-1] == disc) {
+                    //printf("down/left\n");
+                    return true; 
+                }
+            }
         }
 
-        else if(j <= 8){
-            j++;
-            continue; 
-        } else{
-            break;
-
-        }
-    }
-
-    //moving down/left
-    i = row + 1;
-    j = col - 1;
-    while(board[i][j] != disc && board[i][j] != EMPTY) {
-        if(board[i+1][j-1] == disc) {
-            return true; 
+        // flips any opponent discs diagonal down right
+        r = row + 1;
+        c = col + 1;
+        while (r < SIZE && c < SIZE && board[r][c] != EMPTY && board[r][c] != disc) {
+            r++;
+            c++;
         }
 
-        else if(i <= 8 && j >= 1){
-            i++; 
-            j--; 
-            continue;
-        } else{
-            break;
-
-        }
-    }
-
-    //moving up/right
-    i = row + 1;
-    j = col + 1;
-    while(board[i][j] != disc && board[i][j] != EMPTY) {
-        if(board[i+1][j+1] == disc) {
-            return true; 
+        if (r < SIZE && c < SIZE && board[r][c] == disc) {
+            for (int i = row + 1, j = col + 1; i < r && j < c; i++, j++) {
+                if(board[i+1][j+1] == disc) {
+                    return true; 
+                }
+            }
         }
 
-        else if (i <= 8 && j <= 8){
-            i++; 
-            j++; 
-            continue;
-        } else{
-            break;
-
-        }
-    }
-
-    //moving down
-    i = row + 1;
-    j = col;
-    while(board[i][j] != disc && board[i][j] != EMPTY) {
-        if(board[i+1][j] == disc) {
-            return true; 
+        // flips any opponent discs down
+        r = row + 1;
+        c = col;
+        while (r < SIZE&& board[r][c] != EMPTY && board[r][c] != disc) {
+            r++;
         }
 
-        else if(i <= 8){
-            i++; 
-            continue;
-        } else{
-            break;
+        if (r < SIZE && board[r][c] == disc) {
+            for (int i = row + 1; i < r; i++) {
+                if(board[i+1][col] == disc) {
+                    return true; 
+                }
+            }
+        }
 
+        // flips any opponent discs right
+        r = row;
+        c = col + 1;
+        while (c < SIZE && board[r][c] != EMPTY && board[r][c] != disc) {
+            c++;
+        }
+
+        if (c < SIZE && board[r][c] == disc) {
+            for (int j = col + 1; j < c; j++) {
+                if(board[row][j+1] == disc) {
+                    return true; 
+                }
+            }
+        }
+
+        // flips any opponent discs left
+        r = row;
+        c = col - 1;
+        while (c >= 0 && board[r][c] != EMPTY && board[r][c] != disc) {
+            c--;
+        }
+
+        if (c >= 0 && board[r][c] == disc) {
+            for (int j = col - 1; j > c; j--) {
+                if(board[row][j-1] == disc) {
+                    return true; 
+                }
+            }
+        }
+
+        // flips any opponent discs diagonal up right
+        r = row - 1;
+        c = col + 1;
+        while (r >= 0 && c < SIZE && board[r][c] != EMPTY && board[r][c] != disc) {
+            r--;
+            c++;
+        }
+
+        if (r >=0 && c < SIZE && board[r][c] == disc) {
+            for (int i = row - 1, j = col + 1; i > r && j < c; i--, j++) {
+                if(board[i-1][j+1] == disc) {
+                    return true; 
+                }
+            }
+        }
+
+        // flips any opponent discs diagonal up left
+        r = row - 1;
+        c = col - 1;
+        while (r >= 0 && c >= 0 && board[r][c] != EMPTY && board[r][c] != disc) {
+            r--; 
+            c--; 
+        }
+
+        if (r >= 0 && c >= 0 && board[r][c] == disc) {
+            for (int i = row - 1, j = col - 1; i > r && j > c; i--, j--) {
+                if(board[i-1][j-1] == disc) {
+                    return true; 
+                }
+            }
+        }
+
+        // flips any opponent discs diagonal up
+        r = row - 1;
+        c = col;
+        while (r >= 0 && board[r][c] != EMPTY && board[r][c] != disc) {
+            r--;
+        }
+
+        if (r >= 0 && board[r][c] == disc) {
+            for (int i = row - 1; i > r; i--) {
+                if(board[i-1][col] == disc) {
+                    return true; 
+                }
+            }
         }
     }
-
     return false;
 }
 
-void placeDiscAt(char board[][SIZE], int row, int col, char disc)
-{
+void placeDiscAt(char board[][SIZE], int row, int col, char disc){
     //row and column
-    int i, j; 
+    int r, c;  
 
     if(isValidMove(board, row, col, disc)) {
- 
-        //up
-        i = row - 1; 
-        j = col; 
+        // flips any opponent discs diagonal down left (southwest)
+        r = row + 1;
+        c = col - 1;
+        while (r < SIZE && c >= 0 && board[r][c] != EMPTY && board[r][c] != disc) {
+            r++;
+            c--;
+        }
+
+        if (r < SIZE && c >= 0 && board[r][c] == disc) {
+            for (int i = row + 1, j = col - 1; i < r && j > c; i++, j--) {
+                board[i][j] = disc;
+            }
+        }
+
+        // flips any opponent discs diagonal down right
+        r = row + 1;
+        c = col + 1;
+        while (r < SIZE && c < SIZE && board[r][c] != EMPTY && board[r][c] != disc) {
+            r++;
+            c++;
+        }
+
+        if (r < SIZE && c < SIZE && board[r][c] == disc) {
+            for (int i = row + 1, j = col + 1; i < r && j < c; i++, j++) {
+                board[i][j] = disc;
+            }
+        }
+
+        // flips any opponent discs down
+        r = row + 1;
+        c = col;
+        while (r < SIZE&& board[r][c] != EMPTY && board[r][c] != disc) {
+            r++;
+        }
+
+        if (r < SIZE && board[r][c] == disc) {
+            for (int i = row + 1; i < r; i++) {
+                board[i][col] = disc;
+            }
+        }
+
+        // flips any opponent discs right
+        r = row;
+        c = col + 1;
+        while (c < SIZE && board[r][c] != EMPTY && board[r][c] != disc) {
+            c++;
+        }
+
+        if (c < SIZE && board[r][c] == disc) {
+            for (int j = col + 1; j < c; j++) {
+                board[row][j] = disc;
+            }
+        }
+
+        // flips any opponent discs left
+        r = row;
+        c = col - 1;
+        while (c >= 0 && board[r][c] != EMPTY && board[r][c] != disc) {
+            c--;
+        }
+
+        if (c >= 0 && board[r][c] == disc) {
+            for (int j = col - 1; j > c; j--) {
+                board[row][j] = disc;
+            }
+        }
+
+        // flips any opponent discs diagonal up right
+        r = row - 1;
+        c = col + 1;
+        while (r >= 0 && c < SIZE && board[r][c] != EMPTY && board[r][c] != disc) {
+            r--;
+            c++;
+        }
+
+        if (r >=0 && c < SIZE && board[r][c] == disc) {
+            for (int i = row - 1, j = col + 1; i > r && j < c; i--, j++) {
+                board[i][j] = disc;
+            }
+        }
+
+        // flips any opponent discs diagonal up left
+        r = row - 1;
+        c = col - 1;
+        while (r >= 0 && c >= 0 && board[r][c] != EMPTY && board[r][c] != disc) {
+            r--; 
+            c--; 
+        }
+
+        if (r >= 0 && c >= 0 && board[r][c] == disc) {
+            for (int i = row - 1, j = col - 1; i > r && j > c; i--, j--) {
+                board[i][j] = disc;
+            }
+        }
+
+        // flips any opponent discs diagonal up
+        r = row - 1;
+        c = col;
+        while (r >= 0 && board[r][c] != EMPTY && board[r][c] != disc) {
+            r--;
+        }
+
+        if (r >= 0 && board[r][c] == disc) {
+            for (int i = row - 1; i > r; i--) {
+                board[i][col] = disc;
+            }
+        }
         
-        while(board[i][j] != EMPTY && board[i][j] != disc && (i <= 8 && i >= 0) && (j <= 8 && j >= 0)){
-            i--;
-        }
-
-        if(board[i][j] == disc){
-            i = row - 1; 
-            j = col; 
-
-            while(board[i][j] != EMPTY && board[i][j] != disc && (i <= 8 && i >= 0) && (j <= 8 && j >= 0)){
-                board[i][j] = disc;
-                i--;
-            }
-        }
-
-        //down
-        i = row + 1; 
-        j = col; 
-        while(board[i][j] != disc && board[i][j] != EMPTY && (i <= 8 && i >= 0) && (j <= 8 && j >= 0)) {
-            i++; 
-        } 
-
-        if(board[i][j] == disc){
-            i = row + 1; 
-            j = col; 
-            
-            while(board[i][j] != EMPTY && board[i][j] != disc && (i <= 8 && i >= 0) && (j <= 8 && j >= 0)){
-                board[i][j] = disc;
-                i++;
-            }
-        }
-
-        //left
-        i = row; 
-        j = col - 1; 
-
-        while(board[i][j] != disc && board[i][j] != EMPTY && (i <= 8 && i >= 0) && (j <= 8 && j >= 0)) {
-            j--; 
-        } 
-
-        if(board[i][j] == disc){
-            i = row; 
-            j = col - 1; 
-                
-            while(board[i][j] != EMPTY && board[i][j] != disc && (i <= 8 && i >= 0) && (j <= 8 && j >= 0)){
-                board[i][j] = disc;
-                j--; 
-            }
-        }
-
-        //right 
-        i = row; 
-        j = col + 1; 
-        while(board[i][j] != disc && board[i][j] != EMPTY && (i <= 8 && i >= 0) && (j <= 8 && j >= 0)) {
-            j++;
-        } 
-
-        if(board[i][j] == disc){
-            i = row; 
-            j = col + 1; 
-                
-            while(board[i][j] != EMPTY && board[i][j] != disc && (i <= 8 && i >= 0) && (j <= 8 && j >= 0)){
-                board[i][j] = disc;
-                j++;
-            }
-        }
-
-        //moving up/left
-        i = row - 1;
-        j = col - 1;
-        while(board[i][j] != disc && board[i][j] != EMPTY && (i <= 8 && i >= 0) && (j <= 8 && j >= 0)) {
-            i--; 
-            j--; 
-        } 
-
-        if(board[i][j] == disc){
-            i = row - 1; 
-            j = col - 1; 
-                
-            while(board[i][j] != EMPTY && board[i][j] != disc && (i <= 8 && i >= 0) && (j <= 8 && j >= 0)){
-                board[i][j] = disc;
-                i--; 
-                j--; 
-
-            }
-        }
-
-        // moving up/right
-        i = row - 1; 
-        j = col + 1; 
-        while(board[i][j] != disc && board[i][j] != EMPTY && (i <= 8 && i >= 0) && (j <= 8 && j >= 0)) {
-            i--; 
-            j++; 
-        } 
-
-        if(board[i][j] == disc){
-            i = row - 1;  
-            j = col + 1; 
-                
-            while(board[i][j] != EMPTY && board[i][j] != disc && (i <= 8 && i >= 0) && (j <= 8 && j >= 0)){
-                board[i][j] = disc;
-                i--; 
-                j++;
-            }
-        }
-
-        i = row + 1; 
-        j = col - 1; 
-        while(board[i][j] != disc && board[i][j] != EMPTY && (i <= 8 && i >= 0) && (j <= 8 && j >= 0)) {
-            i++;
-            j--; 
-        } 
-
-        if(board[i][j] == disc){
-            i = row + 1; 
-            j = col - 1; 
-                
-            while(board[i][j] != EMPTY && board[i][j] != disc && (i <= 8 && i >= 0) && (j <= 8 && j >= 0)){
-                board[i][j] = disc;
-                i++;
-                j--;
-
-            }
-        }
-
-        //down/right
-        i = row + 1; 
-        j = col + 1; 
-
-        while(board[i][j] != disc && board[i][j] != EMPTY && (i <= 8 && i >= 0) && (j <= 8 && j >= 0)) {
-            i++;  
-            j++; 
-        } 
-
-        if(board[i][j] == disc){
-            i = row + 1; 
-            j = col + 1; 
-                
-            while(board[i][j] != EMPTY && board[i][j] != disc && (i <= 8 && i >= 0) && (j <= 8 && j >= 0)){
-                board[i][j] = disc;
-                i++;
-                j++;
-            }
-        }
         board[row][col] = disc; 
     }
 }
@@ -363,11 +306,7 @@ bool isValidMoveAvailable(char board[][SIZE], char disc)
         }
     }
 
-    if(isBoardFull(board)) {
-        return false; 
-    }
-
-    return true; 
+    return false; 
 }
 
 // Returns true if the board is fully occupied with discs; else returns false
@@ -385,14 +324,16 @@ bool isBoardFull(char board[][SIZE])
 }
 
 // Returns true if either the board is full OR a valid move is not available for either disc
-bool isGameOver(char board[][SIZE])
-{
-    if(isBoardFull(board) || 
-                (!isValidMoveAvailable(board, WHITE) && !isValidMoveAvailable(board, BLACK))) { 
+bool isGameOver(char board[][SIZE]) {
+    if(isBoardFull(board)) {
         return true; 
     } 
-
-    return false; 
+    else if(!isValidMoveAvailable(board, WHITE) && !isValidMoveAvailable(board, BLACK)) {
+        return true; 
+    }
+    else {
+        return false; 
+    }
 }
 
 // If there is a winner, it returns the disc (BLACK or WHITE) associated with the winner.
